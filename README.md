@@ -6,94 +6,10 @@
 [![Build Status](https://scrutinizer-ci.com/g/jeremykenedy/laravel-auth/badges/build.png?b=master)](https://scrutinizer-ci.com/g/jeremykenedy/laravel-auth/build-status/master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-### Sponsor
-<table>
-   <tr>
-      <td><img src="https://s3.amazonaws.com/sponsers/sponsor-logo.png"></td>
-      <td>If you want to quickly add secure token-based authentication to Laravel apps, feel free to check Auth0's Laravel SDK and free plan at <a href="https://auth0.com/overview?utm_source=GHsponsor&utm_medium=GHsponsor&utm_campaign=laravel-auth&utm_content=auth" target="_blank">https://auth0.com/overview</a>.</td>
-   </tr>
-</table>
 
-#### Table of contents
-- [About](#about)
-- [Features](#features)
-- [Installation Instructions](#installation-instructions)
-    - [Build the Front End Assets with Mix](#rebuild-front-end-assets-with-mix)
-    - [Optionally Build Cache](#optionally-build-cache)
-- [Seeds](#seeds)
-    - [Seeded Roles](#seeded-roles)
-    - [Seeded Permissions](#seeded-permissions)
-    - [Seeded Users](#seeded-users)
-    - [Themes Seed List](#themes-seed-list)
-- [Routes](#routes)
-    - [Authentication Routes](#authentication-routes)
-    - [Profile Routes](#profile-routes)
-    - [Admin Routes](#admin-routes)
-- [Socialite](#socialite)
-    - [Get Socialite Login API Keys](#get-socialite-login-api-keys)
-    - [Add More Socialite Logins](#add-more-socialite-logins)
-- [Other API keys](#other-api-keys)
-- [Environment File](#environment-file)
-- [Updates](#updates)
-- [Screenshots](#screenshots)
-- [File Tree](#file-tree)
-- [Opening an Issue](#opening-an-issue)
-- [Laravel Auth License](#laravel-auth-license)
 
 ### About
 Laravel 5.6 with user authentication, registration with email confirmation, social media authentication, password recovery, and captcha protection. This also makes full use of Controllers for the routes, templates for the views, and makes use of middleware for routing. Project can be stood up in minutes.
-
-### Features
-#### A [Laravel](http://laravel.com/) 5.6.x with minimal [Bootstrap](http://getbootstrap.com) 3.7.x project.
-
-| Laravel-Auth Features  |
-| :------------ |
-|Built on [Laravel](http://laravel.com/) 5.6|
-|Uses [MySQL](https://github.com/mysql) Database|
-|Uses [Artisan](http://laravel.com/docs/5.6/artisan) to manage database migration, schema creations, and create/publish page controller templates|
-|Dependencies are managed with [COMPOSER](https://getcomposer.org/)|
-|Laravel Scaffolding **User** and **Administrator Authentication**.|
-|User [Socialite Logins](https://github.com/laravel/socialite) ready to go - See API list used below|
-|[Google Maps API v3](https://developers.google.com/maps/documentation/javascript/) for User Location lookup and Geocoding|
-|CRUD (Create, Read, Update, Delete) Themes Management|
-|CRUD (Create, Read, Update, Delete) User Management|
-|Robust [Laravel Logging](https://laravel.com/docs/5.6/errors#logging) with admin UI using MonoLog|
-|Google [reCaptcha Protection with Google API](https://developers.google.com/recaptcha/)|
-|User Registration with email verification|
-|Makes us of Laravel [Mix](https://laravel.com/docs/5.6/mix) to compile assets|
-|Makes use of [Language Localization Files](https://laravel.com/docs/5.6/localization)|
-|Active Nav states using [Laravel Requests](https://laravel.com/docs/5.6/requests)|
-|Restrict User Email Activation Attempts|
-|Capture IP to users table upon signup|
-|Uses [Laravel Debugger](https://github.com/barryvdh/laravel-debugbar) for development|
-|Makes us of [Password Strength Meter](https://github.com/elboletaire/password-strength-meter)|
-|Makes use of [hideShowPassword](https://github.com/cloudfour/hideShowPassword)|
-|User Avatar Image AJAX Upload with [Dropzone.js](http://www.dropzonejs.com/#configuration)|
-|User Gravatar using [Gravatar API](https://github.com/creativeorange/gravatar)|
-|User Password Reset via Email Token|
-|User Login with remember password|
-|User [Roles/ACL Implementation](https://github.com/jeremykenedy/laravel-roles)|
-|Makes of [Laravel's Soft Delete Structure](https://laravel.com/docs/5.6/eloquent#soft-deleting)|
-|Soft Deleted Users Management System|
-|Permanently Delete Soft Deleted Users|
-|User Delete Account with Goodbye email|
-|User Restore Deleted Account Token|
-|Restore Soft Deleted Users|
-|View Soft Deleted Users|
-|Captures Soft Delete Date|
-|Captures Soft Delete IP|
-|Admin Routing Details UI|
-|Admin PHP Information UI|
-|Eloquent user profiles|
-|User Themes|
-|404 Page|
-|403 Page|
-|Configurable Email Notification via [Laravel-Exception-Notifier](https://github.com/jeremykenedy/laravel-exception-notifier)|
-|User Delete with Goodby email|
-|User Restore Deleted Account|
-|Activity Logging using [Laravel-logger](https://github.com/jeremykenedy/laravel-logger)|
-|Optional 2-step account login verfication with [Laravel 2-Step Verification](https://github.com/jeremykenedy/laravel2step)|
-|Uses [Laravel PHP Info](https://github.com/jeremykenedy/laravel-phpinfo) package|
 
 ### Installation Instructions
 1. Run `git clone https://github.com/jeremykenedy/laravel-auth.git laravel-auth`
@@ -129,8 +45,6 @@ php artisan vendor:publish --tag=laravel2step
 
 #### Optionally Build Cache
 1. From the projects root folder run `php artisan config:cache`
-
-###### And thats it with the caveat of setting up and configuring your development environment. I recommend [Laravel Homestead](https://laravel.com/docs/5.6/homestead)
 
 ### Seeds
 ##### Seeded Roles
