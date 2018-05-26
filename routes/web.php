@@ -14,8 +14,8 @@
 */
 
 // Homepage Route
-Route::get('/', 'PagesController@index')->name('index');
-
+Route::get('/', 'PagesController@index')->name('pocetna');
+Route::get('/o-nama', 'PagesController@about')->name('o-nama');
 // Authentication Routes
 Auth::routes();
 

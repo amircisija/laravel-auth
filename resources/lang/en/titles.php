@@ -2,12 +2,12 @@
 
 return [
 
-    'app'               => 'Laravel',
+    'app'               => 'Coinexpand.net',
     'app2'              => 'Auth 4.0',
     'home'              => 'Home',
-    'login'             => 'Login',
+    'login'             => 'Prijava',
     'logout'            => 'Logout',
-    'register'          => 'Register',
+    'register'          => 'Registracija',
     'resetPword'        => 'Reset Password',
     'toggleNav'         => 'Toggle Navigation',
     'profile'           => 'Profile',

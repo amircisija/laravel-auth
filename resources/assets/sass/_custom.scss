@@ -1,0 +1,71 @@
+html,
+body {
+    height: 100%;
+}
+
+.p-container {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    height: 70vh;
+    justify-content: space-around;
+    position: relative;
+    width: 100%;
+    .overlay-shadow {
+        position: absolute;
+        background: rgba(173, 106, 34, 0.79);
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 999;
+        opacity: .95;
+    }
+}
+
+.p-container section {
+    width: 100%;
+    height: 70vh;
+    flex: 1;
+    display: flex;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.p-container section:nth-child(1) .image {
+    background-image: url(/images/x_2.jpg);
+}
+
+.p-container section .image {
+    background-attachment: fixed;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 500;
+    opacity: 1;
+}
+
+.p-container section .stuff {
+    z-index: 1000;
+    color: $gray-100;
+    margin: 0 auto;
+    font-size: $font-size-lg;
+    position: relative;
+    font-weight: $font-weight-bold;
+}
+
+.p-container section .stuff h2 {
+    margin: 0px;
+}
+
+.section-title {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 45px;
+}

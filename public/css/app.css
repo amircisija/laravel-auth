@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,600,700,800);@charset "UTF-8";
 
 /*!
  * Bootstrap v4.1.1 (https://getbootstrap.com/)
@@ -13913,5 +13913,92 @@ a.text-dark:focus {
   border-left: 6px solid transparent;
   border-right: 6px solid transparent;
   border-bottom: 6px solid #be2626;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+.p-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  height: 70vh;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  position: relative;
+  width: 100%;
+}
+
+.p-container .overlay-shadow {
+  position: absolute;
+  background: rgba(173, 106, 34, 0.79);
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  opacity: .95;
+}
+
+.p-container section {
+  width: 100%;
+  height: 70vh;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.p-container section:nth-child(1) .image {
+  background-image: url(/images/x_2.jpg);
+}
+
+.p-container section .image {
+  background-attachment: fixed;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 500;
+  opacity: 1;
+}
+
+.p-container section .stuff {
+  z-index: 1000;
+  color: #f8f9fa;
+  margin: 0 auto;
+  font-size: 1.09375rem;
+  position: relative;
+  font-weight: 700;
+}
+
+.p-container section .stuff h2 {
+  margin: 0px;
+}
+
+.section-title {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 45px;
 }
 

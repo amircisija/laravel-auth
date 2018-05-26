@@ -40,51 +40,36 @@
         </style>
 
         {{-- Scripts --}}
-
-
-
-
-        
         <script>
             window.Laravel = {!! json_encode([
                 'csrfToken' => csrf_token(),
             ]) !!};
         </script>
 
+        @if (Auth::User() && (Auth::User()->profile) && $theme->link != null && $theme->link != 'null')
+            <link rel="stylesheet" type="text/css" href="{{ $theme->link }}">
+        @endif
 
+        @yield('head')
 
     </head>
     <body>
+        <div id="app">
 
+            @include('partials.nav')
 
+            @yield('content')
 
-<div id="app">
+        </div>
 
-    @include('partials.nav')
-
-    <div class="container">
-
-        @include('partials.form-status')
-
-    </div>
-
-    @yield('content')
-
-</div>
-
-
-
-
-
-
-
+        {{-- Scripts --}}
         <script src="{{ mix('/js/app.js') }}"></script>
 
-@if(config('settings.googleMapsAPIStatus'))
-    {!! HTML::script('//maps.googleapis.com/maps/api/js?key='.config("settings.googleMapsAPIKey").'&libraries=places&dummy=.js', array('type' => 'text/javascript')) !!}
-@endif
+        @if(config('settings.googleMapsAPIStatus'))
+            {!! HTML::script('//maps.googleapis.com/maps/api/js?key='.config("settings.googleMapsAPIKey").'&libraries=places&dummy=.js', array('type' => 'text/javascript')) !!}
+        @endif
 
-@yield('footer_scripts')
+        @yield('footer_scripts')
 
-</body>
+    </body>
 </html>
