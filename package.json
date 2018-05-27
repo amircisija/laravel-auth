@@ -26,6 +26,7 @@
     "moment": "^2.20.1",
     "password-strength-meter": "^1.2.1",
     "popper.js": "^1.14.3",
-    "pusher-js": "^4.2.2"
+    "pusher-js": "^4.2.2",
+    "vue2-filters": "^0.3.0"
   }
 }

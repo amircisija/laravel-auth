@@ -62,6 +62,49 @@
 
         </div>
 
+
+
+
+
+      <footer class="footer py-5 bg-dark s--dark">
+        <div class="container">
+        <div class="row">
+          <div class="col-12 col-md">
+            <p class="lead">Prva web stranica za kupovinu kritpovaluta u BiH i Crnoj Gori</p>
+            <small class="d-block mb-3 text-muted">
+                Sva prava zadržana 
+                   <span class="st-out">{!! config('app.name', Lang::get('titles.app')) !!}</span>  <?php echo date('Y'); ?>
+            </small>
+          </div>
+          <div class="col-6 col-md">
+            <h5>Linkovi</h5>
+            <ul class="list-unstyled text-small">
+              <li><a href="#">Početna</a></li>
+              <li><a href="#">O nama</a></li>
+              <li><a href="#">Vijesti</a></li>
+              <li><a href="#">Q&A</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md">
+            <h5>Resursi</h5>
+            <ul class="list-unstyled text-small">
+              <li><a class="text-muted" href="#">Kupi</a></li>
+              <li><a class="text-muted" href="#">Prodaj</a></li>
+              <li><a class="text-muted" href="#">Prijava</a></li>
+              <li><a class="text-muted" href="#">Registracija</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md">
+            <h5>Legalno</h5>
+            <ul class="list-unstyled text-small">
+              <li><a class="text-muted" href="#">Uslovi korištenja</a></li>
+              <li><a class="text-muted" href="#">Obrada ličnih podataka</a></li>
+            </ul>
+          </div>
+        </div>
+    </div>
+      </footer>
+
         {{-- Scripts --}}
         <script src="{{ mix('/js/app.js') }}"></script>
 

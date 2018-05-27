@@ -13920,6 +13920,18 @@ body {
   height: 100%;
 }
 
+.bg-dark {
+  background: #1c1c1c !important;
+}
+
+.s--dark p {
+  color: #fafafa;
+}
+
+.s--dark h5 {
+  color: #fff;
+}
+
 .p-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -13944,14 +13956,23 @@ body {
 
 .p-container .overlay-shadow {
   position: absolute;
-  background: rgba(173, 106, 34, 0.79);
-  top: 0;
+  backgroud: linear-gradient(to right bottom, #e8962e, #e45131);
   left: 0;
   right: 0;
   width: 100%;
   height: 100%;
   z-index: 999;
-  opacity: .95;
+  opacity: .85;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ff7400+0,ff7400+100;Orange+Flat */
+  background: #ff7400;
+  /* Old browsers */
+  /* FF3.6-15 */
+  /* Chrome10-25,Safari5.1-6 */
+  background: -webkit-gradient(linear, left top, left bottom, from(#ff7400), to(#ff7400));
+  background: linear-gradient(to bottom, #ff7400 0%, #ff7400 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff7400', endColorstr='#ff7400', GradientType=0);
+  /* IE6-9 */
 }
 
 .p-container section {
@@ -14000,5 +14021,71 @@ body {
   text-transform: uppercase;
   font-weight: 800;
   font-size: 45px;
+}
+
+.s--1 .services img {
+  width: 200px;
+}
+
+.s--1 .services h3.service-text {
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+
+.s--1 .services p.service-text {
+  font-size: 14px;
+  color: #777;
+}
+
+.s--1 a {
+  color: #ff7400;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.69);
+  -webkit-transition: all 0.3s ease-in-out !important;
+  transition: all 0.3s ease-in-out !important;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: #ff7400;
+}
+
+.navbar-dark .navbar-nav .nav-link:active {
+  color: #ff7400;
+}
+
+.footer li a {
+  color: #6c757d;
+  -webkit-transition: all 0.3s ease-in-out !important;
+  transition: all 0.3s ease-in-out !important;
+}
+
+.footer li a:hover {
+  color: #ff7400;
+  text-decoration: none;
+}
+
+.footer li a:active {
+  color: #ff7400;
+}
+
+.btn--a {
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+          box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  padding: .84rem 2.14rem;
+  font-size: .81rem;
+}
+
+.st-out {
+  color: #ff7400 !important;
+}
+
+.price--wrapper {
+  font-family: Arial;
+  font-weight: bold;
 }
 
