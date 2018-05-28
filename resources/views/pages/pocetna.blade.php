@@ -24,9 +24,25 @@
 <div class="clearfix"></div>
 
 
-<section id="crx--t" class="py-5">
-    <crypto--ticker></crypto--ticker>   
+
+
+<section>
+    <div id="test--1"></div>    
 </section>
+
+<section id="app2" class="py-5">
+    <div class="container">
+        <div class="row">
+            <crypto--ticker></crypto--ticker> 
+            <crypto--calculator></crypto--calculator> 
+        </div>
+    </div>
+</section>
+
+
+
+
+
 <section class="s--1  py-5">
     <div class="container">
         <div class="row">

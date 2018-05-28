@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card card-default p-4" v-for="result in results">
+                <div class="card card-default p-4" v-for="result in results" v-bind:key="result.id">
                     <h1>{{ result.title }}</h1>
                     <p>{{ result.abstract }}.</p>
                     <small> {{ result.created_date}} </small>

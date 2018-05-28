@@ -18,14 +18,12 @@ password = require('password-strength-meter');
 // Vue.component('example', require('./components/Example.vue'));
 
 Vue.component('crypto--ticker', require('./components/CryptoTicker.vue'));
-Vue.component('test--1', require('./components/Test.vue'));
+Vue.component('crypto--calculator', require('./components/Calculator.vue'));
 
 const app = new Vue({
-	el: '#crx--t'
+	el: '#app2'
 });
-const app2 = new Vue({
-	el: '#test--1'
-});
+
 
 $.fn.extend({
 

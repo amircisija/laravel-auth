@@ -1631,6 +1631,194 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/Calculator.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__("./node_modules/axios/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+var bpiDefault = { change: '', code: '' };
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      endpoint: 'https://api.coindesk.com/v1/bpi/',
+      trade: 'BTC',
+      selectedCurrency: null,
+      timestamp: null,
+      bpi: Object.assign({}, bpiDefault),
+      inverted: false,
+      value: null,
+      supportedCurrencies: ['BAM'],
+      loading: false,
+      interval: null,
+      blurred: false
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    this.selectedCurrency = this.supportedCurrencies[0];
+    this.getUpdatedPrice();
+
+    this.interval = setInterval(function () {
+      _this.getUpdatedPrice();
+    }, 10000);
+  },
+  beforeDestroy: function beforeDestroy() {
+    clearInterval(this.interval);
+  },
+
+  methods: {
+    getUpdatedPrice: function getUpdatedPrice() {
+      var _this2 = this;
+
+      this.loading = true;
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(this.endpoint + 'currentprice/' + this.selectedCurrency + '.json').then(function (res) {
+        if (res && res.data) {
+          _this2.timestamp = moment().local().format('LT');
+          _this2.bpi = Object.assign(bpiDefault, res.data.bpi[_this2.selectedCurrency]);
+          _this2.getHistorical();
+        }
+
+        _this2.loading = false;
+      }).catch(function (error) {
+        _this2.loading = false;
+        console.log(error);
+      });
+    },
+    getHistorical: function getHistorical() {
+      var _this3 = this;
+
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(this.endpoint + 'historical/close.json?currency=' + this.selectedCurrency + '&for=yesterday').then(function (res) {
+        if (res && res.data) {
+          var y = Object.values(res.data.bpi)[0];
+          _this3.bpi.change = (_this3.rate - y) * 100 / y;
+        }
+      }).catch(function (error) {
+        alert(error);
+      });
+    },
+    setCurrency: function setCurrency(code) {
+      this.selectedCurrency = code;
+      this.getUpdatedPrice();
+    }
+  },
+  computed: {
+    inputValue: {
+      get: function get() {
+        return this.value;
+      },
+      set: function set(value) {
+        this.blurred = isNaN(value);
+        if (this.blurred) {
+          return;
+        }
+        this.value = Number(value);
+      }
+    },
+    rate: function rate() {
+      return this.bpi ? this.bpi.rate_float : null;
+    },
+    displayRate: function displayRate() {
+      var formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: this.currency || 'BAM',
+        minimumFractionDigits: 2
+      });
+
+      return formatter.format(this.rate);
+    },
+    currency: function currency() {
+      return this.bpi ? this.bpi.code : null;
+    },
+    change: function change() {
+      var formatter = new Intl.NumberFormat();
+      return this.bpi ? formatter.format(this.bpi.change) : 'null';
+    },
+    conversion: function conversion() {
+      var val = this.inverted ? this.value * this.rate : this.value / this.rate;
+
+      var opts = { minimumFractionDigits: this.inverted ? 2 : 4 };
+
+      if (this.inverted) {
+        opts.style = 'currency';
+        opts.currency = this.currency || 'BAM';
+      }
+
+      var formatter = new Intl.NumberFormat('en-US', opts);
+      var result = formatter.format(val);
+      return this.inverted ? result : result + ' ' + this.trade;
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/CryptoTicker.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1661,166 +1849,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
-/**
- * Our Vue.js application.
- *
- * This manages the entire front-end website.
- */
-
-// The API we're using for grabbing metadata about each cryptocurrency
-// (including logo images). The service can be found at:
-// https://www.cryptocompare.com/api/
-var CRYPTOCOMPARE_API_URI = "https://min-api.cryptocompare.com";
-var CRYPTOCOMPARE_URI = "https://www.cryptocompare.com";
-
-// The API we're using for grabbing cryptocurrency prices.  The service can be
-// found at: https://coinmarketcap.com/api/
-var COINMARKETCAP_API_URI = "https://api.coinmarketcap.com";
-
-// The amount of milliseconds (ms) after which we should update our currency
-// charts.
-var UPDATE_INTERVAL = 60 * 1000;
-
+var url = "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,LTC,ETH,BCH,BCC&tsyms=EUR";
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      bamToEuro: 1.95583,
-      coins: [],
-      coinData: {}
-    };
-  },
-
-  methods: {
-    /**
-     * Load up all cryptocurrency data.  This data is used to find what logos
-     * each currency has, so we can display things in a friendly way.
-     */
-    getCoinData: function getCoinData() {
-      var _this = this;
-
-      var self = this;
-
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(CRYPTOCOMPARE_API_URI + "/data/all/coinlist").then(function (resp) {
-        _this.coinData = resp.data.Data;
-        _this.getCoins();
-      }).catch(function (err) {
-        _this.getCoins();
-        console.error(err);
-      });
-    },
-
-    /**
-     * Get the top 10 cryptocurrencies by value.  This data is refreshed each 5
-     * minutes by the backing API service.
-     */
-    getCoins: function getCoins() {
-      var _this2 = this;
-
-      var self = this;
-
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(COINMARKETCAP_API_URI + "/v1/ticker/?convert=EUR&limit=5").then(function (resp) {
-        _this2.coins = resp.data;
-      }).catch(function (err) {
-        console.error(err);
-      });
-    },
-
-    /**
-     * Given a cryptocurrency ticket symbol, return the currency's logo
-     * image.
-     */
-    getCoinImage: function getCoinImage(symbol) {
-      // These two symbols don't match up across API services. I'm manually
-      // replacing these here so I can find the correct image for the currency.
-      //
-      // In the future, it would be nice to find a more generic way of searching
-      // for currency images
-      symbol = symbol === "MIOTA" ? "IOT" : symbol;
-      symbol = symbol === "VERI" ? "VRM" : symbol;
-
-      return CRYPTOCOMPARE_URI + this.coinData[symbol].ImageUrl;
-    },
-
-    /**
-     * Return a CSS color (either red or green) depending on whether or
-     * not the value passed in is negative or positive.
-     */
-    getColor: function getColor(num) {
-      return num > 0 ? "color:green;" : "color:red;";
-    }
-  },
-
-  /**
-   * Using this lifecycle hook, we'll populate all of the cryptocurrency data as
-   * soon as the page is loaded a single time.
-   */
-  created: function created() {
-    this.getCoinData();
-  }
-});
-
-/**
- * Once the page has been loaded and all of our app stuff is working, we'll
- * start polling for new cryptocurrency data every minute.
- *
- * This is sufficiently dynamic because the API's we're relying on are updating
- * their prices every 5 minutes, so checking every minute is sufficient.
- */
-setInterval(function () {
-  app.getCoins();
-}, UPDATE_INTERVAL);
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/Test.vue":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__("./node_modules/axios/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
+      toBam: 1.95583,
       results: []
     };
   },
   mounted: function mounted() {
     var _this = this;
 
-    axios.get("https://api.nytimes.com/svc/topstories/v2/home.json?api-key=b299fa65ce9541008701a7ffb8029d7a").then(function (response) {
-      _this.results = response.data.results;
+    __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(url).then(function (response) {
+
+      _this.results = response.data.RAW;
+      _this.results.BTC.EUR.PRICE = (_this.results.BTC.EUR.PRICE * _this.toBam).toFixed(2);
+      _this.results.LTC.EUR.PRICE = (_this.results.LTC.EUR.PRICE * _this.toBam).toFixed(2);
+      _this.results.ETH.EUR.PRICE = (_this.results.ETH.EUR.PRICE * _this.toBam).toFixed(2);
+      _this.results.BCH.EUR.PRICE = (_this.results.BCH.EUR.PRICE * _this.toBam).toFixed(2);
     });
   }
 });
@@ -5769,7 +5818,22 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fa56768e\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/Calculator.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\nbody[data-v-fa56768e] {\r\n  background-color: #e6e8e9;\n}\n.btn[data-v-fa56768e]:focus,\r\n.btn[data-v-fa56768e]:active {\r\n  -webkit-box-shadow: none !important;\r\n          box-shadow: none !important;\r\n  -webkit-animation: btn-scale-data-v-fa56768e 0.5s ease-in-out;\r\n          animation: btn-scale-data-v-fa56768e 0.5s ease-in-out;\n}\n.container[data-v-fa56768e] {\r\n  margin-top: 4em;\r\n  background-color: #fff;\r\n  border-radius: 0.25rem;\r\n  border: solid 1px darkgray;\n}\n.converter[data-v-fa56768e] {\r\n  border-top: solid 1px lightgray;\n}\n.converter input[type=text].reverse[data-v-fa56768e] {\r\n  text-align: right;\r\n  font-size: 2em;\r\n  font-weight: 400;\r\n  border-radius: 0;\r\n  border: none;\r\n  border-bottom: solid 1px;\r\n  height: 1.8em;\n}\n.converter input[type=text].reverse[data-v-fa56768e]:focus {\r\n  -webkit-box-shadow: none;\r\n          box-shadow: none;\n}\n.converter input[type=text].reverse:focus + .underline[data-v-fa56768e] {\r\n  left: 0;\n}\n.converter .c-toggle[data-v-fa56768e] {\r\n  padding: 1.5em;\r\n  color: #0E85EC;\r\n  cursor: pointer;\r\n  border: none;\r\n  border-top-left-radius: 0;\r\n  border-bottom-left-radius: 0;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n      -ms-flex-direction: column;\r\n          flex-direction: column;\r\n  -webkit-box-align: center;\r\n      -ms-flex-align: center;\r\n          align-items: center;\n}\n.converter .c-toggle[data-v-fa56768e]:hover {\r\n  -webkit-transition: all 0.5s ease;\r\n  transition: all 0.5s ease;\r\n  color: #192C52;\n}\n.converter .c-toggle:hover svg[data-v-fa56768e] {\r\n  -webkit-animation: toggle-spin-data-v-fa56768e 0.5s ease-in-out;\r\n          animation: toggle-spin-data-v-fa56768e 0.5s ease-in-out;\n}\n.underline[data-v-fa56768e] {\r\n  background-color: dodgerblue;\r\n  display: inline-block;\r\n  height: 3px;\r\n  position: absolute;\r\n  right: 0;\r\n  left: 100%;\r\n  bottom: 1.5em;\r\n  -webkit-transition: all 0.1s ease-in-out;\r\n  transition: all 0.1s ease-in-out;\r\n  z-index: 5;\n}\n.price-holder[data-v-fa56768e] {\r\n  padding: 5px 10px;\r\n  background-color: #4f6080;\r\n  margin: 10px 0;\r\n  width: -webkit-fit-content;\r\n  width: -moz-fit-content;\r\n  width: fit-content;\r\n  border-radius: 0.2em;\r\n  color: white;\r\n  text-align: center;\r\n  font-size: 1.2em;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-align: center;\r\n      -ms-flex-align: center;\r\n          align-items: center;\r\n  -webkit-box-pack: center;\r\n      -ms-flex-pack: center;\r\n          justify-content: center;\n}\n.input-group-addon[data-v-fa56768e] {\r\n  background-color: transparent;\r\n  border: none;\r\n  font-weight: 500;\r\n  font-size: 2em;\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n      -ms-flex-direction: column;\r\n          flex-direction: column;\n}\n.input-group-addon .sm[data-v-fa56768e] {\r\n  font-size: 0.5em;\r\n  color: lightgray;\n}\n.nav-link[data-v-fa56768e] {\r\n  padding: 0.5rem 0.5rem;\n}\n.nav-item[data-v-fa56768e] {\r\n  cursor: pointer;\r\n  font-weight: 500;\n}\n.nav-item[data-v-fa56768e]:hover {\r\n  color: darkgray;\n}\n.nav-item:hover a.active[data-v-fa56768e] {\r\n  color: #0e85ec;\n}\n.nav-item a.active[data-v-fa56768e] {\r\n  color: #0e85ec;\n}\n.timestamp[data-v-fa56768e] {\r\n  color: #4f6080;\n}\n.blurry[data-v-fa56768e] {\r\n  text-shadow: 0 0 1em rgba(1, 1, 1, 0.5);\r\n  color: transparent;\n}\n.label[data-v-fa56768e] {\r\n  font-size: 0.5em;\r\n  padding: 4px;\r\n  border-radius: 0.2em;\r\n  font-weight: 900;\n}\n.label.up[data-v-fa56768e] {\r\n  background-color: #438a43;\n}\n.label.down[data-v-fa56768e] {\r\n  background-color: #cc3232;\n}\n@-webkit-keyframes btn-scale-data-v-fa56768e {\n50% {\r\n    -webkit-transform: scale(1.05);\r\n            transform: scale(1.05);\n}\n100% {\r\n    -webkit-transform: scale(1);\r\n            transform: scale(1);\n}\n}\n@keyframes btn-scale-data-v-fa56768e {\n50% {\r\n    -webkit-transform: scale(1.05);\r\n            transform: scale(1.05);\n}\n100% {\r\n    -webkit-transform: scale(1);\r\n            transform: scale(1);\n}\n}\n@-webkit-keyframes toggle-spin-data-v-fa56768e {\n0% {\r\n    color: #0E85EC;\r\n    -webkit-transform: rotate(0deg);\r\n            transform: rotate(0deg);\n}\n100% {\r\n    -webkit-transform: rotate(360deg);\r\n            transform: rotate(360deg);\n}\n}\n@keyframes toggle-spin-data-v-fa56768e {\n0% {\r\n    color: #0E85EC;\r\n    -webkit-transform: rotate(0deg);\r\n            transform: rotate(0deg);\n}\n100% {\r\n    -webkit-transform: rotate(360deg);\r\n            transform: rotate(360deg);\n}\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -43728,51 +43792,21 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-12" }, [
-        _c("div", { staticClass: "example" }, [
-          _c("table", { staticClass: "table table-hover" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c(
-              "tbody",
-              _vm._l(_vm.coins, function(coin) {
-                return _c("tr", {}, [
-                  _c("td", [_vm._v(_vm._s(coin.rank))]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _vm._v(_vm._s(coin.name) + " (" + _vm._s(coin.symbol) + ")")
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c("img", {
-                      attrs: { width: "40", src: _vm.getCoinImage(coin.symbol) }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "price--wrapper" }, [
-                    _vm._v(
-                      _vm._s(
-                        (
-                          (coin.price_eur | _vm.currency) *
-                          _vm.bamToEuro
-                        ).toFixed(2)
-                      )
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("td", { style: _vm.getColor(coin.percent_change_1h) }, [
-                    coin.percent_change_1h > 0
-                      ? _c("span", [_vm._v("+")])
-                      : _vm._e(),
-                    _vm._v(_vm._s(coin.percent_change_1h) + "%\n        ")
-                  ])
-                ])
-              })
-            )
-          ])
-        ])
+  return _c("div", { staticClass: "col-md-6" }, [
+    _c("div", { staticClass: "example" }, [
+      _c("table", { staticClass: "table table-responsive" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.results, function(result, index) {
+            return _c("tr", { key: index.id }, [
+              _c("td", [_vm._v(_vm._s(index))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(result.EUR.PRICE))])
+            ])
+          })
+        )
       ])
     ])
   ])
@@ -43784,15 +43818,9 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("td", [_vm._v("#")]),
+        _c("th", [_vm._v("Valuta")]),
         _vm._v(" "),
-        _c("td", [_vm._v("Ime")]),
-        _vm._v(" "),
-        _c("td", [_vm._v("Simbol")]),
-        _vm._v(" "),
-        _c("td", [_vm._v("Cijena (BAM)")]),
-        _vm._v(" "),
-        _c("td", [_vm._v("1H")])
+        _c("th", [_vm._v("Cijena (BAM)")])
       ])
     ])
   }
@@ -43808,28 +43836,120 @@ if (false) {
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-d4aeccee\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/Test.vue":
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-fa56768e\",\"hasScoped\":true,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/Calculator.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row justify-content-center" }, [
-      _c(
-        "div",
-        { staticClass: "col-md-8" },
-        _vm._l(_vm.results, function(result) {
-          return _c("div", { staticClass: "card card-default p-4" }, [
-            _c("h1", [_vm._v(_vm._s(result.title))]),
+  return _c("div", { staticClass: "col-sm-6" }, [
+    _c("div", { staticClass: "timestamp ml-2" }, [
+      _vm.loading
+        ? _c("span", [_c("i", { staticClass: "fa fa-spinner fa-spin mr-2" })])
+        : _vm._e(),
+      _vm._v("\n  Last updated: " + _vm._s(_vm.timestamp) + "\n")
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col" }, [
+          _c("div", { staticClass: "price-holder" }, [
+            _c("span", [_vm._v(_vm._s(_vm.displayRate))]),
             _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(result.abstract) + ".")]),
-            _vm._v(" "),
-            _c("small", [_vm._v(" " + _vm._s(result.created_date) + " ")])
+            _c(
+              "span",
+              {
+                staticClass: "label ml-2",
+                class: _vm.bpi.change >= 0 ? "up" : "down"
+              },
+              [_vm._v("\n          " + _vm._s(_vm.change) + "%\n        ")]
+            )
           ])
-        })
-      )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col ml-auto my-auto" }, [
+          _c(
+            "ul",
+            { staticClass: "nav justify-content-end" },
+            _vm._l(_vm.supportedCurrencies, function(opt, i) {
+              return _c("li", { key: i, staticClass: "nav-item" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "nav-link",
+                    class: { active: _vm.currency === opt },
+                    on: {
+                      click: function($event) {
+                        _vm.setCurrency(opt)
+                      }
+                    }
+                  },
+                  [_vm._v("\n            " + _vm._s(opt) + "\n          ")]
+                )
+              ])
+            })
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row align-items-center converter" }, [
+        _c("div", { staticClass: "col-sm-10 col-md-6 ml-auto" }, [
+          _c("div", { staticClass: "input-group" }, [
+            _c("div", { staticClass: "input-group" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.inputValue,
+                    expression: "inputValue"
+                  }
+                ],
+                staticClass: "form-control reverse",
+                attrs: { type: "text", placeholder: "0.0" },
+                domProps: { value: _vm.inputValue },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.inputValue = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("span", { staticClass: "underline" })
+            ]),
+            _vm._v(" "),
+            _c("span", { staticClass: "input-group-addon" }, [
+              _c("span", [
+                _vm._v(_vm._s(_vm.inverted ? _vm.trade : _vm.currency))
+              ]),
+              _vm._v(" "),
+              _c(
+                "span",
+                { staticClass: "sm", class: { blurry: _vm.blurred } },
+                [_vm._v(_vm._s(_vm.conversion))]
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "c-toggle btn btn-default col-sm-2",
+            attrs: { type: "button" },
+            on: {
+              click: function($event) {
+                _vm.inverted = !_vm.inverted
+              }
+            }
+          },
+          [_c("i", { staticClass: "fas fa-sync fa-2x my-2" })]
+        )
+      ])
     ])
   ])
 }
@@ -43839,7 +43959,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-d4aeccee", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-fa56768e", module.exports)
   }
 }
 
@@ -43862,6 +43982,33 @@ if(false) {
  if(!content.locals) {
    module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-aba6f6bc\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CryptoTicker.vue", function() {
      var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-aba6f6bc\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CryptoTicker.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fa56768e\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/Calculator.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fa56768e\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/Calculator.vue");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("73e0bac8", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fa56768e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Calculator.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fa56768e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Calculator.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -55182,13 +55329,10 @@ password = __webpack_require__("./node_modules/password-strength-meter/dist/pass
 // Vue.component('example', require('./components/Example.vue'));
 
 Vue.component('crypto--ticker', __webpack_require__("./resources/assets/js/components/CryptoTicker.vue"));
-Vue.component('test--1', __webpack_require__("./resources/assets/js/components/Test.vue"));
+Vue.component('crypto--calculator', __webpack_require__("./resources/assets/js/components/Calculator.vue"));
 
 var app = new Vue({
-	el: '#crx--t'
-});
-var app2 = new Vue({
-	el: '#test--1'
+	el: '#app2'
 });
 
 $.fn.extend({
@@ -55307,6 +55451,58 @@ window.Echo = new __WEBPACK_IMPORTED_MODULE_0_laravel_echo___default.a({
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/Calculator.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fa56768e\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/Calculator.vue")
+}
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/Calculator.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-fa56768e\",\"hasScoped\":true,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/Calculator.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-fa56768e"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\Calculator.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-fa56768e", Component.options)
+  } else {
+    hotAPI.reload("data-v-fa56768e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/components/CryptoTicker.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -55348,54 +55544,6 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-aba6f6bc", Component.options)
   } else {
     hotAPI.reload("data-v-aba6f6bc", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-
-/***/ "./resources/assets/js/components/Test.vue":
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
-/* script */
-var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/Test.vue")
-/* template */
-var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-d4aeccee\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/Test.vue")
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\Test.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-d4aeccee", Component.options)
-  } else {
-    hotAPI.reload("data-v-d4aeccee", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
