@@ -23,9 +23,6 @@
 
 <div class="clearfix"></div>
 
-
-
-
 <section>
     <div id="test--1"></div>    
 </section>

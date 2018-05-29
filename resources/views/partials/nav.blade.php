@@ -23,7 +23,7 @@
           <a class="nav-link" href="#">Vijesti</a>
       </li>
       <li class="nav-item">
-          <a class="nav-link" href="#">Q&A</a>
+          <a class="nav-link" href="/qa">Q&A</a>
       </li>
       <li class="nav-item">
           <a class="nav-link" href="#">Kontakt</a>
