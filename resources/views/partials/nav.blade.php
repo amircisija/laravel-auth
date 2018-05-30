@@ -46,7 +46,7 @@
               <li {{ Request::is('active-users') ? 'class=active' : null }}>{!! HTML::link(url('/active-users'), Lang::get('titles.activeUsers')) !!}</li>
           </ul>
       </li>
-  @endrole       
+    @endrole       
     </ul>
 
     <ul class="navbar-nav ml-auto">
@@ -55,6 +55,8 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">{!! trans('titles.login') !!}</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">{!! trans('titles.register') !!}</a></li>
                 @else
+
+
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" role="button" aria-expanded="false">
 
@@ -66,24 +68,21 @@
 
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
-                       
-                        <ul class="dropdown-menu" role="menu">
-                                <li {{ Request::is('profile/'.Auth::user()->name, 'profile/'.Auth::user()->name . '/edit') ? 'class=active' : null }}>
-                                    {!! HTML::link(url('/profile/'.Auth::user()->name), trans('titles.profile')) !!}
-                                </li>
-                                <li>
-                                    <a href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                        {!! trans('titles.logout') !!}
-                                    </a>
-    
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        {{ csrf_field() }}
-                                    </form>
-                                </li>
-                                
-                            </ul>
+
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            
+                            
+                                    {!! HTML::link(URL::to('/profile/'.Auth::user()->name), trans('titles.profile'), array('class' => ' dropdown-item')) !!}
+
+
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">Logout</a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </div>
+
                     </li>
                 @endif
     </ul>

@@ -1,8 +1,15 @@
 @extends('layouts.master')
 
+@if(Auth::user())
+    @section('template_title')
+        {{ Auth::user()->name }}'s' Homepage
+    @endsection
+
+    @section('template_fastload_css')
+    @endsection
+@endif
+
 @section('content')
-
-
 
 <div class="p-container">
     <section>
@@ -30,8 +37,10 @@
 <section id="app2" class="py-5">
     <div class="container">
         <div class="row">
-            <crypto--ticker></crypto--ticker> 
-            <crypto--calculator></crypto--calculator> 
+            @if (!Auth::guest())
+                <crypto--ticker></crypto--ticker> 
+                <crypto--calculator></crypto--calculator> 
+            @endif
         </div>
     </div>
 </section>

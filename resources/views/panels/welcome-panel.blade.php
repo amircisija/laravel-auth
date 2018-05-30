@@ -13,7 +13,7 @@
 <div class="panel panel-primary @role('admin', true) panel-info  @endrole">
     <div class="panel-heading">
 
-        Welcome {{ Auth::user()->name }}
+        Welcome {{ Auth::user()->name }} to your Dashboard
 
         @role('admin', true)
             <span class="pull-right label label-primary" style="margin-top:4px">
