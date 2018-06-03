@@ -30,11 +30,7 @@
 
 <div class="clearfix"></div>
 
-<section>
-    <div id="test--1"></div>    
-</section>
-
-<section id="app2" class="py-5">
+<section class="py-5">
     <div class="container">
         <div class="row">
             @if (!Auth::guest())

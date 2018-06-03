@@ -31,19 +31,19 @@
       @role('admin')
       <li class="nav-item dropdown">
           <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-              Admin <span class="caret"></span>
+              Postavke <span class="caret"></span>
           </a>
           <ul class="dropdown-menu" role="menu">
               <li {{ Request::is('users', 'users/' . Auth::user()->id, 'users/' . Auth::user()->id . '/edit') ? 'class=active' : null }}>
-                {!! HTML::link(url('/users'), Lang::get('titles.adminUserList')) !!}
+                {!! HTML::link(url('/users'), Lang::get('titles.adminUserList'), array('class' => ' dropdown-item')) !!}
              </li>
-              <li {{ Request::is('users/create') ? 'class=active' : null }}>{!! HTML::link(url('/users/create'), Lang::get('titles.adminNewUser')) !!}</li>
-              <li {{ Request::is('themes','themes/create') ? 'class=active' : null }}>{!! HTML::link(url('/themes'), Lang::get('titles.adminThemesList')) !!}</li>
-              <li {{ Request::is('logs') ? 'class=active' : null }}>{!! HTML::link(url('/logs'), Lang::get('titles.adminLogs')) !!}</li>
-              <li {{ Request::is('activity') ? 'class=active' : null }}>{!! HTML::link(url('/activity'), Lang::get('titles.adminActivity')) !!}</li>
-              <li {{ Request::is('phpinfo') ? 'class=active' : null }}>{!! HTML::link(url('/phpinfo'), Lang::get('titles.adminPHP')) !!}</li>
-              <li {{ Request::is('routes') ? 'class=active' : null }}>{!! HTML::link(url('/routes'), Lang::get('titles.adminRoutes')) !!}</li>
-              <li {{ Request::is('active-users') ? 'class=active' : null }}>{!! HTML::link(url('/active-users'), Lang::get('titles.activeUsers')) !!}</li>
+              <li {{ Request::is('users/create') ? 'class=active' : null }}>{!! HTML::link(url('/users/create'), Lang::get('titles.adminNewUser'), array('class' => ' dropdown-item')) !!}</li>
+              <li {{ Request::is('themes','themes/create') ? 'class=active' : null }}>{!! HTML::link(url('/themes'), Lang::get('titles.adminThemesList'), array('class' => ' dropdown-item')) !!}</li>
+              <li {{ Request::is('logs') ? 'class=active' : null }}>{!! HTML::link(url('/logs'), Lang::get('titles.adminLogs'), array('class' => ' dropdown-item')) !!}</li>
+              <li {{ Request::is('activity') ? 'class=active' : null }}>{!! HTML::link(url('/activity'), Lang::get('titles.adminActivity'), array('class' => ' dropdown-item')) !!}</li>
+              <li {{ Request::is('phpinfo') ? 'class=active' : null }}>{!! HTML::link(url('/phpinfo'), Lang::get('titles.adminPHP'), array('class' => ' dropdown-item')) !!}</li>
+              <li {{ Request::is('routes') ? 'class=active' : null }}>{!! HTML::link(url('/routes'), Lang::get('titles.adminRoutes'), array('class' => ' dropdown-item')) !!}</li>
+              <li {{ Request::is('active-users') ? 'class=active' : null }}>{!! HTML::link(url('/active-users'), Lang::get('titles.activeUsers'), array('class' => ' dropdown-item')) !!}</li>
           </ul>
       </li>
     @endrole       
@@ -71,9 +71,7 @@
 
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             
-                            
-                                    {!! HTML::link(URL::to('/profile/'.Auth::user()->name), trans('titles.profile'), array('class' => ' dropdown-item')) !!}
-
+                                {!! HTML::link(URL::to('/profile/'.Auth::user()->name), trans('titles.profile'), array('class' => ' dropdown-item')) !!}
 
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">Logout</a>
