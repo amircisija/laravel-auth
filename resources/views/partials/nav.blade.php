@@ -30,10 +30,10 @@
       </li>
       @role('admin')
       <li class="nav-item dropdown">
-          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false" >
               Postavke <span class="caret"></span>
           </a>
-          <ul class="dropdown-menu" role="menu">
+          <ul class="dropdown-menu dropdown-primary" role="menu">
               <li {{ Request::is('users', 'users/' . Auth::user()->id, 'users/' . Auth::user()->id . '/edit') ? 'class=active' : null }}>
                 {!! HTML::link(url('/users'), Lang::get('titles.adminUserList'), array('class' => ' dropdown-item')) !!}
              </li>

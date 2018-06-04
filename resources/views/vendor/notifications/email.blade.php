@@ -45,14 +45,19 @@
 @if (! empty($salutation))
 {{ $salutation }}
 @else
-Regards,<br>{{ config('app.name') }}
+Srdačan pozdrav. <br>
+Coinexpand Team <br>
+<small>{{ config('app.name') }} <br>
+{{ Lang::get('titles.email') }}</small>
 @endif
 
 <!-- Subcopy -->
 @if (isset($actionText))
 @component('mail::subcopy')
-If you’re having trouble clicking the "{{ $actionText }}" button, copy and paste the URL below
-into your web browser: [{{ $actionUrl }}]({{ $actionUrl }})
+Ukoliko se niste registrirali na www.coinexpand.net ignorirajte ovaj email.
+Ako imate problema sa aktivacijom, kopirajte ovaj link u Vaš browser. <br>
+[{{ $actionUrl }}]({{ $actionUrl }})
+
 @endcomponent
 @endif
 @endcomponent

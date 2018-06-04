@@ -18,11 +18,11 @@ return [
      *
      */
 
-    'activationSubject'  => 'Activation required',
-    'activationGreeting' => 'Welcome!',
-    'activationMessage'  => 'You need to activate your email before you can start using all of our services.',
-    'activationButton'   => 'Activate',
-    'activationThanks'   => 'Thank you for using our application!',
+    'activationSubject'  => 'Aktivacija naloga',
+    'activationGreeting' => 'Poštovani,',
+    'activationMessage'  => 'Hvala što ste se registrirali na www.coinexpand.net. Da biste aktivirali svoj nalog kliknite na dugme ispod.',
+    'activationButton'   => 'Aktiviraj nalog',
+    'activationThanks'   => 'Hvala Vam sto koristite našu platformu.',
 
     /*
      * Goobye email.

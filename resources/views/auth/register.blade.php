@@ -5,29 +5,27 @@
 
 
 <div class="subpage--wrapper">
-        <div class="p-container">
-            <section>
-                <div class="overlay-shadow"></div>
-                <div class="image" data-type="background" data-speed="5"></div>
-                <div class="stuff my-auto" data-type="content">
-                    <div class="col-sm-12 mx-auto text-center">
-                        <h1 class="display-1">Registracija</h1>
-                        <h2>Brza i jednostavna registracija</h2>
-                    </div>
+    <div class="p-container">
+        <section>
+            <div class="overlay-shadow"></div>
+            <div class="image" data-type="background" data-speed="5"></div>
+            <div class="stuff my-auto" data-type="content">
+                <div class="col-sm-12 mx-auto text-center">
+                    <h2 class="display-3">Registracija naloga</h2>
+                    <h3>Brzo, jednostavno, sigurno</h3>
                 </div>
-            </section>
-        </div>
+            </div>
+        </section>
     </div>
+</div>
 
 
 <section id="registration--site" class="py-5">
 
-
-
 <div class="container">
-    <div class="row">
+    <div class="row mb-5">
         <div class="col-sm-6 mx-auto">
-                @include('partials.form-status')
+            @include('partials.form-status')
         </div>
     </div>
         {!! Form::open(['route' => 'register', 'class' => 'form-horizontal col-sm-6 mx-auto', 'role' => 'form', 'method' => 'POST'] ) !!}
@@ -123,13 +121,13 @@
             <div class="clearfix"></div>
 
 
-            <div class="col-sm-8 mx-auto">
+            {{-- <div class="col-sm-8 mx-auto">
                 @if(config('settings.reCaptchStatus'))
                 <div class="form-group">
                         <div class="g-recaptcha" data-sitekey="{{ config('settings.reCaptchSite') }}"></div>
                 </div>
                 @endif
-            </div>
+            </div> --}}
 
             <div class="clearfix"></div>
 

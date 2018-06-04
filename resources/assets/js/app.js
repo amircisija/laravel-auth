@@ -19,7 +19,7 @@ password = require('password-strength-meter');
 
 Vue.component('crypto--ticker', require('./components/CryptoTicker.vue'));
 Vue.component('crypto--calculator', require('./components/Calculator.vue'));
-
+Vue.component('user-count', require('./components/UsersCount.vue'));
 const app = new Vue({
 	el: '#app2'
 });

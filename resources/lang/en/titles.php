@@ -4,6 +4,7 @@ return [
 
     'app'               => 'Coinexpand.net',
     'app2'              => 'Auth 4.0',
+    'email'             => 'info@coinexpand.net',
     'home'              => 'Home',
     'login'             => 'Prijava',
     'logout'            => 'Logout',
@@ -14,7 +15,7 @@ return [
     'editProfile'       => 'Edit Profile',
     'createProfile'     => 'Create Profile',
 
-    'activation'        => 'Registration Started  | Activation Required',
+    'activation'        => 'Uspješna registracija',
     'exceeded'          => 'Activation Error',
 
     'editProfile'       => 'Edit Profile',

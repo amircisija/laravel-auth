@@ -18,21 +18,21 @@ return [
 
     // Activation items
     'sentEmail'        => 'We have sent an email to :email.',
-    'clickInEmail'     => 'Please click the link in it to activate your account.',
-    'anEmailWasSent'   => 'An email was sent to :email on :date.',
-    'clickHereResend'  => 'Click here to resend the email.',
-    'successActivated' => 'Success, your account has been activated.',
+    'clickInEmail'     => 'Kliknite na link koji ste dobili na Vašu email adresu.',
+    'anEmailWasSent'   => 'Za aktivaciju naloga potrebno je kliknuti na link koji je poslan na vašu adresu :email.',
+    'clickHereResend'  => 'Pošalji ponovo aktivacijski email',
+    'successActivated' => 'Vaš nalog je uspješno aktiviran.',
     'unsuccessful'     => 'Your account could not be activated; please try again.',
     'notCreated'       => 'Your account could not be created; please try again.',
     'tooManyEmails'    => 'Too many activation emails have been sent to :email. <br />Please try again in <span class="label label-danger">:hours hours</span>.',
-    'regThanks'        => 'Thank you for registering, ',
+    'regThanks'        => 'Poštovani, hvala Vam za registraciju na Coinexpand.net.',
     'invalidToken'     => 'Invalid activation token. ',
     'activationSent'   => 'Activation email sent. ',
     'alreadyActivated' => 'Already activated. ',
 
     // Labels
-    'whoops'          => 'Whoops! ',
-    'someProblems'    => 'There were some problems with your input.',
+    'whoops'          => 'Greška! ',
+    'someProblems'    => 'Došlo je do greške prilikom registracije',
     'email'           => 'E-Mail Address',
     'password'        => 'Password',
     'rememberMe'      => ' Remember Me',
@@ -64,8 +64,8 @@ return [
     'clickHereActivate' => 'Click here to activate your account: ',
 
     // Validators
-    'userNameTaken'    => 'Username is taken',
-    'userNameRequired' => 'Username is required',
+    'userNameTaken'    => 'Korisničko ime je u upotrebi',
+    'userNameRequired' => 'Korisničko ime je obavezno',
     'fNameRequired'    => 'First Name is required',
     'lNameRequired'    => 'Last Name is required',
     'emailRequired'    => 'Email is required',
@@ -74,7 +74,7 @@ return [
     'PasswordMin'      => 'Password needs to have at least 6 characters',
     'PasswordMax'      => 'Password maximum length is 20 characters',
     'captchaRequire'   => 'Captcha is required',
-    'CaptchaWrong'     => 'Wrong captcha, please try again.',
+    'CaptchaWrong'     => 'Google recaptha je pogrešno unesena, molimo Vas pokušajte ponovo.',
     'roleRequired'     => 'User role is required.',
 
 ];

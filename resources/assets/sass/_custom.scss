@@ -193,3 +193,12 @@ body {
 .md-form {
     margin-top: 0 !important;
 }
+
+#registration--site {
+    .card {
+        h4.card-title,
+        p {
+            color: #fff;
+        }
+    }
+}

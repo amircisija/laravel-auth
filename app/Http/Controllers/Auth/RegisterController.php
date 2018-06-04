@@ -72,7 +72,7 @@ class RegisterController extends Controller
                 'password'              => 'required|min:6|max:30|confirmed',
                 'password_confirmation' => 'required|same:password',
                 'g-recaptcha-response'  => '',
-                'captcha'               => 'required|min:1',
+                // 'captcha'               => 'required|min:1',
             ],
             [
                 'name.unique'                   => trans('auth.userNameTaken'),

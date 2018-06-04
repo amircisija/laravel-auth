@@ -24561,3 +24561,8 @@ body {
   margin-top: 0 !important;
 }
 
+#registration--site .card h4.card-title,
+#registration--site .card p {
+  color: #fff;
+}
+
